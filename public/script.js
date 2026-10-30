@@ -356,13 +356,14 @@
       gameActions.classList.remove('show');
     } else {
       gameActions.classList.remove('show');
+      const isFirstMove = state.board.every(cell => !cell);
       if (state.turn === myRole) {
         statusBanner.classList.add('my-turn');
-        statusMessage.textContent = '👉 Sua vez de jogar!';
+        statusMessage.textContent = isFirstMove ? '🎲 Você foi sorteado(a) para começar!' : '👉 Sua vez de jogar!';
       } else {
         statusBanner.classList.add('other-turn');
         const opponentName = state.turn === 'X' ? state.players.X.name : state.players.O.name;
-        statusMessage.textContent = `Aguardando jogada de ${opponentName}...`;
+        statusMessage.textContent = isFirstMove ? `🎲 ${opponentName} foi sorteado(a) para começar...` : `Aguardando jogada de ${opponentName}...`;
       }
     }
 

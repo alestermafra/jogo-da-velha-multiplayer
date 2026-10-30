@@ -28,6 +28,10 @@ const WINNING_COMBOS = [
   [0, 4, 8], [2, 4, 6]             // Diagonais
 ];
 
+function getRandomStartingPlayer() {
+  return Math.random() < 0.5 ? 'X' : 'O';
+}
+
 function checkWinner(board) {
   for (const combo of WINNING_COMBOS) {
     const [a, b, c] = combo;
@@ -50,7 +54,7 @@ function getOrCreateRoom(roomId) {
         X: { id: null, name: 'Jogador 1 (X)', connected: false },
         O: { id: null, name: 'Jogador 2 (O)', connected: false }
       },
-      turn: 'X',
+      turn: getRandomStartingPlayer(),
       winner: null,
       winningLine: null,
       scores: { X: 0, O: 0, draws: 0 },
@@ -148,6 +152,8 @@ const server = http.createServer((req, res) => {
       room.players.O.id = playerId;
       room.players.O.connected = true;
       if (playerName) room.players.O.name = playerName;
+      // Ao entrar o 2º jogador, sorteia quem começa a rodada
+      room.turn = getRandomStartingPlayer();
     } else {
       assignedRole = 'spectator';
     }
@@ -266,11 +272,11 @@ const server = http.createServer((req, res) => {
         }
 
         if (action === 'restart') {
-          // Reinicia tabuleiro mantendo placar
+          // Reinicia tabuleiro mantendo placar e sorteia quem começa
           room.board = Array(9).fill('');
           room.winner = null;
           room.winningLine = null;
-          room.turn = 'X'; // Começa com X
+          room.turn = getRandomStartingPlayer();
           room.lastReaction = null;
 
           broadcastRoom(room);
@@ -299,7 +305,7 @@ const server = http.createServer((req, res) => {
           room.board = Array(9).fill('');
           room.winner = null;
           room.winningLine = null;
-          room.turn = 'X';
+          room.turn = getRandomStartingPlayer();
 
           broadcastRoom(room);
           res.writeHead(200, { 'Content-Type': 'application/json' });
