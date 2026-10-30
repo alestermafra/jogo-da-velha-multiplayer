@@ -1,0 +1,17 @@
+{
+  "name": "jogo-da-velha-multiplayer",
+  "version": "1.0.0",
+  "description": "Jogo da Velha multiplayer simples para jogar no celular pelo Codespaces",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "jogo-da-velha",
+    "tic-tac-toe",
+    "multiplayer",
+    "codespaces"
+  ],
+  "author": "",
+  "license": "MIT"
+}

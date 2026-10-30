@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Jogo da Velha Online 🎮</title>
+  <meta name="description" content="Jogo da velha multiplayer em tempo real para celular e navegador.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Cabeçalho -->
+    <header class="header">
+      <div class="header-top">
+        <h1 class="logo">Jogo da Velha <span class="badge-online">ONLINE</span></h1>
+        <button id="btnSound" class="btn-icon" aria-label="Ligar/Desligar Som" title="Ligar/Desligar Som">🔊</button>
+      </div>
+      <div class="room-bar">
+        <span class="room-label">Sala:</span>
+        <span id="roomNameDisplay" class="room-tag">...</span>
+        <button id="btnShareRoom" class="btn-share" title="Enviar link para o celular">
+          <span>📲 Convidar Sobrinho</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Placar -->
+    <section class="scoreboard">
+      <div class="score-card player-x" id="cardPlayerX">
+        <div class="player-avatar">❌</div>
+        <div class="player-info">
+          <span class="player-label" id="labelPlayerX">Jogador 1</span>
+          <span class="player-status" id="statusPlayerX">Conectando...</span>
+        </div>
+        <span class="score-number" id="scoreX">0</span>
+      </div>
+
+      <div class="score-card draw-card">
+        <span class="draw-label">Empates</span>
+        <span class="score-number" id="scoreDraws">0</span>
+      </div>
+
+      <div class="score-card player-o" id="cardPlayerO">
+        <div class="player-avatar">⭕</div>
+        <div class="player-info">
+          <span class="player-label" id="labelPlayerO">Jogador 2</span>
+          <span class="player-status" id="statusPlayerO">Aguardando...</span>
+        </div>
+        <span class="score-number" id="scoreO">0</span>
+      </div>
+    </section>
+
+    <!-- Status do Turno / Mensagens -->
+    <div class="status-banner" id="statusBanner">
+      <div class="spinner" id="waitingSpinner"></div>
+      <span id="statusMessage">Aguardando seu sobrinho entrar...</span>
+    </div>
+
+    <!-- Tabuleiro 3x3 -->
+    <main class="board-wrapper">
+      <div class="board" id="board" role="grid" aria-label="Tabuleiro de Jogo da Velha">
+        <button class="cell" data-index="0" aria-label="Casa 1"></button>
+        <button class="cell" data-index="1" aria-label="Casa 2"></button>
+        <button class="cell" data-index="2" aria-label="Casa 3"></button>
+        <button class="cell" data-index="3" aria-label="Casa 4"></button>
+        <button class="cell" data-index="4" aria-label="Casa 5"></button>
+        <button class="cell" data-index="5" aria-label="Casa 6"></button>
+        <button class="cell" data-index="6" aria-label="Casa 7"></button>
+        <button class="cell" data-index="7" aria-label="Casa 8"></button>
+        <button class="cell" data-index="8" aria-label="Casa 9"></button>
+      </div>
+
+      <!-- Canvas para confetes de vitória -->
+      <canvas id="confettiCanvas"></canvas>
+    </main>
+
+    <!-- Ações pós-jogo -->
+    <div class="game-actions" id="gameActions">
+      <button id="btnRestart" class="btn-primary">
+        🔄 Jogar Novamente
+      </button>
+      <button id="btnResetScore" class="btn-secondary">
+        Zerar Placar
+      </button>
+    </div>
+
+    <!-- Barra de Reações / Emojis animados -->
+    <div class="reactions-bar">
+      <span class="reactions-title">Reações rápidas:</span>
+      <div class="reactions-buttons">
+        <button class="btn-reaction" data-emoji="🔥">🔥</button>
+        <button class="btn-reaction" data-emoji="😂">😂</button>
+        <button class="btn-reaction" data-emoji="👏">👏</button>
+        <button class="btn-reaction" data-emoji="🥳">🥳</button>
+        <button class="btn-reaction" data-emoji="😱">😱</button>
+        <button class="btn-reaction" data-emoji="🤖">🤖</button>
+      </div>
+    </div>
+
+    <!-- Identificação do jogador conectado -->
+    <footer class="footer-info">
+      <div id="myRoleBadge" class="my-role-badge">Você é: <strong>Carregando...</strong></div>
+      <button id="btnChangeName" class="btn-text">Trocar meu apelido</button>
+    </footer>
+  </div>
+
+  <!-- Modal de Compartilhamento -->
+  <dialog id="shareModal" class="custom-modal">
+    <div class="modal-content">
+      <h3>📲 Convidar para Jogar</h3>
+      <p>Envie o link abaixo para o celular do seu sobrinho:</p>
+      <div class="share-input-group">
+        <input type="text" id="shareUrlInput" readonly>
+        <button id="btnCopyLink" class="btn-copy">Copiar</button>
+      </div>
+      <div class="modal-buttons">
+        <a id="btnWhatsApp" href="#" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+          💬 Enviar pelo WhatsApp
+        </a>
+        <button id="btnCloseModal" class="btn-close-modal">Fechar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Container de partículas de reações -->
+  <div id="reactionsOverlay" class="reactions-overlay"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

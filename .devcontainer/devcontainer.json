@@ -1,0 +1,12 @@
+{
+  "name": "Jogo da Velha Multiplayer",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Jogo da Velha",
+      "onAutoForward": "openBrowser",
+      "visibility": "public"
+    }
+  }
+}
+
