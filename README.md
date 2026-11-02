@@ -46,6 +46,6 @@ Para que o link funcione no celular seu e do seu sobrinho sem pedir login do Git
 - 🎊 **Chuva de Confetes:** Animação festiva para comemorar quem ganhou a partida.
 - 📊 **Placar Automático:** Contabiliza vitórias do X, vitórias do O e empates.
 - 🔄 **Jogar Novamente:** Botão de revanche imediata sem precisar gerar outro link.
-- 😂 **Reações Rápidas:** Barra de emojis (🔥, 😂, 👏, 🥳, 😱, 🤖) que flutuam na tela de ambos durante o jogo.
+- 😂 **Reações Rápidas:** Barra de emojis (🔥, 😂, 👏, 🥳, 😱, 😭) que flutuam na tela de ambos durante o jogo.
 - 0️⃣ **Zero Dependências:** Feito com Node.js puro, rápido, leve e sem risco de quebras de versões de pacotes.
 
